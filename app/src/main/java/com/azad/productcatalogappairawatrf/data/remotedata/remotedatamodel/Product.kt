@@ -1,5 +1,4 @@
 package com.azad.productcatalogappairawatrf.data.remotedata.remotedatamodel
-
 data class Product(
     val availabilityStatus: String,
     val brand: String,

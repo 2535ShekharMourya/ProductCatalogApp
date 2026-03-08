@@ -1,14 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout
+xmlns:android="http://schemas.android.com/apk/res/android"
+android:orientation="vertical"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:padding="10dp">
+
+<androidx.appcompat.widget.SearchView
+    android:id="@+id/searchView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:queryHint="Search product..." />
+
+<androidx.recyclerview.widget.RecyclerView
+    android:id="@+id/recyclerProducts"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.fragments.SearchProductsScreenFragment">
+    android:layout_marginTop="10dp"/>
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="SearchProductsScreenFragment" />
-
-</FrameLayout>
+</LinearLayout>

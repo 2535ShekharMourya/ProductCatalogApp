@@ -1,6 +1,6 @@
 plugins {
-    alias(libs.plugins.android.application)
-//    kotlin("kapt")
+    id("com.android.application")
+    id("kotlin-parcelize")
 }
 
 android {
@@ -47,6 +47,7 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+    implementation("org.jetbrains.kotlin:kotlin-stdlib:1.9.22")
 
     // Animation and Image Loading
     implementation("com.airbnb.android:lottie:6.1.0")
@@ -118,8 +119,8 @@ dependencies {
 
 
 //    // Hilt
-//    implementation("com.google.dagger:hilt-android:2.51.1")
-//    kapt("com.google.dagger:hilt-compiler:2.51.1")
+    implementation("com.google.dagger:hilt-android:2.51.1")
+   //kapt("com.google.dagger:hilt-compiler:2.51.1")
 //
 //    implementation("io.coil-kt:coil:2.4.0")
 
