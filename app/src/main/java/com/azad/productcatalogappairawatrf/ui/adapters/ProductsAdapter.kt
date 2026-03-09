@@ -56,9 +56,10 @@ class ProductsAdapter(val context: Context, val templateClickListener: ProductCl
     override fun getItemCount(): Int {
         return templatesDataList.size
     }
-    fun addProducts(newTemplates: List<Product>){
-        templatesDataList.clear()
+    fun addProducts(newTemplates: List<Product>) {
+        val start = templatesDataList.size
         templatesDataList.addAll(newTemplates)
-        notifyDataSetChanged()
+        notifyItemRangeInserted(start, newTemplates.size)
     }
+
 }

@@ -4,6 +4,7 @@ import android.util.Log
 import com.azad.productcatalogappairawatrf.core.Resource
 import com.azad.productcatalogappairawatrf.data.remotedata.ApiService
 import com.azad.productcatalogappairawatrf.data.remotedata.remotedatamodel.AllProductsResponse
+import com.azad.productcatalogappairawatrf.data.remotedata.remotedatamodel.Product
 import retrofit2.HttpException
 import java.io.IOException
 
@@ -34,9 +35,9 @@ class RepositoryImp( private val apiService: ApiService?): Repository {
 
     }
 
-    override suspend fun getProductsCategory(category: String?): Resource<AllProductsResponse> {
+    override suspend fun getProductsCategory(category: String?,limit: Int, skip: Int): Resource<AllProductsResponse> {
         return try {
-            val response = apiService?.getProductsCategory(category)
+            val response = apiService?.getProductsCategory(category,limit, skip)
             if (response?.isSuccessful == true) {
                 response.body()?.let { products ->
 
@@ -57,5 +58,31 @@ class RepositoryImp( private val apiService: ApiService?): Repository {
             Log.d("Response", "getProductsCategory: Unexpected error: ${e.message}")
             Resource.Error("Unexpected error: ${e.message}")
         }
+    }
+
+    override suspend fun getProductById(id: Int): Resource<Product> {
+        return try {
+            val response = apiService?.getProductById(id)
+            if (response?.isSuccessful == true) {
+                response.body()?.let { products ->
+
+                    Log.d("Response", "getProducts: ${products}")
+                    Resource.Success(products)
+                } ?: Resource.Error("Empty response body")
+            } else {
+                Log.d("Response", "getProductsCategory: getProducts: ${response?.code()}")
+                Resource.Error("HTTP ${response?.code()}: ${response?.message()}")
+            }
+        } catch (e: IOException) {
+            Log.d("Response", "getProductsCategory: Network error: Check your internet connection")
+            Resource.Error("Network error: Check your internet connection")
+        } catch (e: HttpException) {
+            Log.d("Response", "getProductsCategory: Server error: ${e.message()}")
+            Resource.Error("Server error: ${e.message()}")
+        } catch (e: Exception) {
+            Log.d("Response", "getProductsCategory: Unexpected error: ${e.message}")
+            Resource.Error("Unexpected error: ${e.message}")
+        }
+
     }
 }

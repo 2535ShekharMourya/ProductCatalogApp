@@ -1,10 +1,11 @@
-package com.azad.productcatalogappairawatrf.ui.fragments
+package com.azad.productcatalogappairawatrf.ui
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import androidx.activity.enableEdgeToEdge
+import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.viewModels
 import com.azad.productcatalogappairawatrf.R
 import com.azad.productcatalogappairawatrf.core.Resource
@@ -12,16 +13,12 @@ import com.azad.productcatalogappairawatrf.data.Repository
 import com.azad.productcatalogappairawatrf.data.RepositoryImp
 import com.azad.productcatalogappairawatrf.data.remotedata.RetrofitAPIClient
 import com.azad.productcatalogappairawatrf.data.remotedata.remotedatamodel.Product
-import com.azad.productcatalogappairawatrf.databinding.FragmentProductDetailScreenBinding
-import com.azad.productcatalogappairawatrf.ui.SharedViewModel
-import com.azad.productcatalogappairawatrf.ui.SharedViewmodelFactory
+import com.azad.productcatalogappairawatrf.databinding.ActivityProductDetailsBinding
 import com.bumptech.glide.Glide
 import kotlin.getValue
 
-class ProductDetailScreenFragment : Fragment() {
-    lateinit var binding: FragmentProductDetailScreenBinding
-    private var product_id: Int? = null
-
+class ProductDetailsActivity : AppCompatActivity() {
+    lateinit var binding: ActivityProductDetailsBinding
     // 1. Create a Repository instance
     private val repo: Repository by lazy {
         val remoteDataSource = RetrofitAPIClient.getInstance()
@@ -35,34 +32,24 @@ class ProductDetailScreenFragment : Fragment() {
 
     // 3. Use the by viewModels delegate with the Factory
     private val viewModel: SharedViewModel by viewModels { viewModelFactory }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            product_id = it.getInt(TAB_DATA)
-        }
-    }
+        enableEdgeToEdge()
+        binding = ActivityProductDetailsBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        val productId = intent.getIntExtra("product_id", -1)
+//        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+//            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+//            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+//            insets
+       // }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        binding = FragmentProductDetailScreenBinding.inflate(inflater, container, false)
-        return binding.root
-        // return inflater.inflate(R.layout.fragment_product_detail_screen, container, false)
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        viewModel.getProductById(product_id!!)
-        viewModel.productWithId.observe(viewLifecycleOwner) { products ->
+        viewModel.getProductById(productId)
+        viewModel.productWithId.observe(this) { products ->
             handleCollectionTemplatesResource(products)
         }
 
-
     }
-
     fun handleCollectionTemplatesResource(resource: Resource<Product>) {
         when (resource) {
             is Resource.Loading -> {}
@@ -74,7 +61,7 @@ class ProductDetailScreenFragment : Fragment() {
                 binding.txtTitle.text = resource.data?.title
                 binding.txtRating.text = resource.data?.rating.toString()
                 binding.txtStock.text = resource.data?.stock.toString()
-                Glide.with(requireActivity())
+                Glide.with(this)
                     .load(resource.data?.thumbnail)
                     .placeholder(R.drawable.favorite_selected)
                     .into(binding.productImage)
@@ -82,22 +69,6 @@ class ProductDetailScreenFragment : Fragment() {
 
             is Resource.Error<*> -> {}
 
-        }
-    }
-
-
-    companion object {
-        private const val TAB_DATA = "product_id"
-
-        fun newInstance(product_id: Int): MoreProductFragment {
-            val fragment = MoreProductFragment()
-            val args = Bundle().apply {
-                putInt(TAB_DATA, product_id) // Data class needs to implement Parcelable
-                // OR use putSerializable if Data implements Serializable
-                // putSerializable(ARG_FEED_DATA, data)
-            }
-            fragment.arguments = args
-            return fragment
         }
     }
 }

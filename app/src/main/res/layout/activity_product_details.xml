@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -8,57 +7,57 @@
     android:layout_height="match_parent"
     android:padding="16dp"
     android:background="#000000">
-    <!-- Header Layout -->
-    <LinearLayout
-        android:id="@+id/headerLayout"
-        android:layout_width="0dp"
-        android:layout_height="56dp"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
-        android:paddingHorizontal="10dp"
-        android:background="#E0E0E0"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+<!--    &lt;!&ndash; Header Layout &ndash;&gt;-->
+<!--    <LinearLayout-->
+<!--        android:id="@+id/headerLayout"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="56dp"-->
+<!--        android:orientation="horizontal"-->
+<!--        android:gravity="center_vertical"-->
+<!--        android:paddingHorizontal="10dp"-->
+<!--        android:background="#E0E0E0"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent">-->
 
-        <!-- Back Button -->
-        <ImageView
-            android:id="@+id/btn_Back"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:background="@drawable/bg_circle_button"
-            android:padding="10dp"
-            android:src="@drawable/back"
-            app:tint="#3F51B5"/>
+<!--        &lt;!&ndash; Back Button &ndash;&gt;-->
+<!--        <ImageView-->
+<!--            android:id="@+id/btn_Back"-->
+<!--            android:layout_width="40dp"-->
+<!--            android:layout_height="40dp"-->
+<!--            android:background="@drawable/bg_circle_button"-->
+<!--            android:padding="10dp"-->
+<!--            android:src="@drawable/back"-->
+<!--            app:tint="#3F51B5"/>-->
 
-        <!-- Title -->
-        <TextView
-            android:id="@+id/txtHeaderTitle"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="Product Details"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:textColor="#000000"
-            android:gravity="center"
-            android:layout_weight="1"/>
+<!--        &lt;!&ndash; Title &ndash;&gt;-->
+<!--        <TextView-->
+<!--            android:id="@+id/txtHeaderTitle"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Product Details"-->
+<!--            android:textSize="18sp"-->
+<!--            android:textStyle="bold"-->
+<!--            android:textColor="#000000"-->
+<!--            android:gravity="center"-->
+<!--            android:layout_weight="1"/>-->
 
-        <!-- Share Button -->
-        <ImageView
-            android:id="@+id/btnShare"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:background="@drawable/bg_circle_button"
-            android:padding="10dp"
-            android:src="@drawable/share"
-            app:tint="#3F51B5"/>
+<!--        &lt;!&ndash; Share Button &ndash;&gt;-->
+<!--        <ImageView-->
+<!--            android:id="@+id/btnShare"-->
+<!--            android:layout_width="40dp"-->
+<!--            android:layout_height="40dp"-->
+<!--            android:background="@drawable/bg_circle_button"-->
+<!--            android:padding="10dp"-->
+<!--            android:src="@drawable/share"-->
+<!--            app:tint="#3F51B5"/>-->
 
-    </LinearLayout>
+<!--    </LinearLayout>-->
 
     <ImageView
         android:id="@+id/product_image"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_30sdp"
+        android:layout_height="@dimen/_300sdp"
         android:src="@drawable/share"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -202,71 +201,71 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
-<!--    &lt;!&ndash; Processor Card &ndash;&gt;-->
-<!--    <com.google.android.material.card.MaterialCardView-->
-<!--        android:id="@+id/cardProcessor"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="110dp"-->
-<!--        android:layout_marginTop="24dp"-->
-<!--        app:cardCornerRadius="16dp"-->
-<!--        app:cardBackgroundColor="#EEEEEE"-->
-<!--        app:layout_constraintTop_toBottomOf="@id/txtDescription"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintEnd_toStartOf="@id/cardBattery"-->
-<!--        app:layout_constraintWidth_percent="0.48">-->
+    <!--    &lt;!&ndash; Processor Card &ndash;&gt;-->
+    <!--    <com.google.android.material.card.MaterialCardView-->
+    <!--        android:id="@+id/cardProcessor"-->
+    <!--        android:layout_width="0dp"-->
+    <!--        android:layout_height="110dp"-->
+    <!--        android:layout_marginTop="24dp"-->
+    <!--        app:cardCornerRadius="16dp"-->
+    <!--        app:cardBackgroundColor="#EEEEEE"-->
+    <!--        app:layout_constraintTop_toBottomOf="@id/txtDescription"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintEnd_toStartOf="@id/cardBattery"-->
+    <!--        app:layout_constraintWidth_percent="0.48">-->
 
-<!--        <LinearLayout-->
-<!--            android:orientation="vertical"-->
-<!--            android:gravity="center"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="match_parent">-->
+    <!--        <LinearLayout-->
+    <!--            android:orientation="vertical"-->
+    <!--            android:gravity="center"-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="match_parent">-->
 
-<!--            <TextView-->
-<!--                android:text="Processor"-->
-<!--                android:textColor="#777777"-->
-<!--                android:textSize="13sp"/>-->
+    <!--            <TextView-->
+    <!--                android:text="Processor"-->
+    <!--                android:textColor="#777777"-->
+    <!--                android:textSize="13sp"/>-->
 
-<!--            <TextView-->
-<!--                android:text="A15 Bionic"-->
-<!--                android:textColor="#000000"-->
-<!--                android:textSize="16sp"-->
-<!--                android:textStyle="bold"/>-->
+    <!--            <TextView-->
+    <!--                android:text="A15 Bionic"-->
+    <!--                android:textColor="#000000"-->
+    <!--                android:textSize="16sp"-->
+    <!--                android:textStyle="bold"/>-->
 
-<!--        </LinearLayout>-->
+    <!--        </LinearLayout>-->
 
-<!--    </com.google.android.material.card.MaterialCardView>-->
+    <!--    </com.google.android.material.card.MaterialCardView>-->
 
-<!--    &lt;!&ndash; Battery Card &ndash;&gt;-->
-<!--    <com.google.android.material.card.MaterialCardView-->
-<!--        android:id="@+id/cardBattery"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="110dp"-->
-<!--        app:cardCornerRadius="16dp"-->
-<!--        app:cardBackgroundColor="#EEEEEE"-->
-<!--        app:layout_constraintTop_toTopOf="@id/cardProcessor"-->
-<!--        app:layout_constraintStart_toEndOf="@id/cardProcessor"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintWidth_percent="0.48">-->
+    <!--    &lt;!&ndash; Battery Card &ndash;&gt;-->
+    <!--    <com.google.android.material.card.MaterialCardView-->
+    <!--        android:id="@+id/cardBattery"-->
+    <!--        android:layout_width="0dp"-->
+    <!--        android:layout_height="110dp"-->
+    <!--        app:cardCornerRadius="16dp"-->
+    <!--        app:cardBackgroundColor="#EEEEEE"-->
+    <!--        app:layout_constraintTop_toTopOf="@id/cardProcessor"-->
+    <!--        app:layout_constraintStart_toEndOf="@id/cardProcessor"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintWidth_percent="0.48">-->
 
-<!--        <LinearLayout-->
-<!--            android:orientation="vertical"-->
-<!--            android:gravity="center"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="match_parent">-->
+    <!--        <LinearLayout-->
+    <!--            android:orientation="vertical"-->
+    <!--            android:gravity="center"-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="match_parent">-->
 
-<!--            <TextView-->
-<!--                android:text="Battery"-->
-<!--                android:textColor="#777777"-->
-<!--                android:textSize="13sp"/>-->
+    <!--            <TextView-->
+    <!--                android:text="Battery"-->
+    <!--                android:textColor="#777777"-->
+    <!--                android:textSize="13sp"/>-->
 
-<!--            <TextView-->
-<!--                android:text="Up to 19h"-->
-<!--                android:textColor="#000000"-->
-<!--                android:textSize="16sp"-->
-<!--                android:textStyle="bold"/>-->
+    <!--            <TextView-->
+    <!--                android:text="Up to 19h"-->
+    <!--                android:textColor="#000000"-->
+    <!--                android:textSize="16sp"-->
+    <!--                android:textStyle="bold"/>-->
 
-<!--        </LinearLayout>-->
+    <!--        </LinearLayout>-->
 
-<!--    </com.google.android.material.card.MaterialCardView>-->
+    <!--    </com.google.android.material.card.MaterialCardView>-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

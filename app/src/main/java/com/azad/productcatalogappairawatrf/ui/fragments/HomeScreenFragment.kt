@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.viewpager2.widget.ViewPager2
 import com.azad.productcatalogappairawatrf.R
 import com.azad.productcatalogappairawatrf.core.Resource
@@ -43,7 +44,7 @@ class HomeScreenFragment : Fragment() {
     }
 
     // 3. Use the by viewModels delegate with the Factory
-    private val viewModel: SharedViewModel by activityViewModels { viewModelFactory }
+    private val viewModel: SharedViewModel by viewModels { viewModelFactory }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }

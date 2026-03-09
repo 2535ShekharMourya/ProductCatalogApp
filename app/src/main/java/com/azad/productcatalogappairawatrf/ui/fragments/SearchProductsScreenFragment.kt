@@ -1,5 +1,6 @@
 package com.azad.productcatalogappairawatrf.ui.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -13,13 +14,16 @@ import com.azad.productcatalogappairawatrf.R
 import com.azad.productcatalogappairawatrf.data.Repository
 import com.azad.productcatalogappairawatrf.data.RepositoryImp
 import com.azad.productcatalogappairawatrf.data.remotedata.RetrofitAPIClient
+import com.azad.productcatalogappairawatrf.data.remotedata.remotedatamodel.Product
 import com.azad.productcatalogappairawatrf.databinding.FragmentSearchProductsScreenBinding
+import com.azad.productcatalogappairawatrf.ui.ProductClickListener
+import com.azad.productcatalogappairawatrf.ui.ProductDetailsActivity
 import com.azad.productcatalogappairawatrf.ui.SharedViewModel
 import com.azad.productcatalogappairawatrf.ui.SharedViewmodelFactory
 import com.azad.productcatalogappairawatrf.ui.adapters.SearchProductAdapter
 import kotlin.getValue
 
-class SearchProductsScreenFragment : Fragment() {
+class SearchProductsScreenFragment : Fragment(), ProductClickListener {
     lateinit var binding: FragmentSearchProductsScreenBinding
     private lateinit var recyclerView: RecyclerView
     private lateinit var searchView: SearchView
@@ -62,7 +66,7 @@ class SearchProductsScreenFragment : Fragment() {
 
         viewModel.getAllProducts()
         viewModel.products.observe(viewLifecycleOwner) { products ->
-            adapter = SearchProductAdapter(products.data?.products)
+            adapter = SearchProductAdapter(products.data?.products,this)
             recyclerView.adapter = adapter
         }
         setupSearch()
@@ -83,6 +87,13 @@ class SearchProductsScreenFragment : Fragment() {
                 return true
             }
         })
+    }
+
+    override fun onProductClick(product: Product) {
+        val intent = Intent(requireContext(), ProductDetailsActivity::class.java)
+        intent.putExtra("product_id", product.id)
+
+        startActivity(intent)
     }
 
 }

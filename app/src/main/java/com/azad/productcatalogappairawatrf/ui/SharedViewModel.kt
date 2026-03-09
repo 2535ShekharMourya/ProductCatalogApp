@@ -8,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.azad.productcatalogappairawatrf.core.Resource
 import com.azad.productcatalogappairawatrf.data.Repository
 import com.azad.productcatalogappairawatrf.data.remotedata.remotedatamodel.AllProductsResponse
+import com.azad.productcatalogappairawatrf.data.remotedata.remotedatamodel.Product
 import kotlinx.coroutines.launch
 
 class SharedViewModel(private val repo: Repository) : ViewModel() {
@@ -17,8 +18,16 @@ class SharedViewModel(private val repo: Repository) : ViewModel() {
     private val _specificProducts = MutableLiveData<Resource<AllProductsResponse>>()
     val specificProducts: LiveData<Resource<AllProductsResponse>> = _specificProducts
 
+    private val _productWithId = MutableLiveData<Resource<Product>>()
+    val productWithId: LiveData<Resource<Product>> = _productWithId
 
 
+fun getProductById(id: Int){
+    viewModelScope.launch {
+        _productWithId.value = Resource.Loading()
+        _productWithId.value = repo.getProductById(id)
+    }
+}
 
 
     fun getAllProducts() {
@@ -27,10 +36,10 @@ class SharedViewModel(private val repo: Repository) : ViewModel() {
             _products.value = repo.getAllProducts()
         }
     }
-    fun getProductsCategory(category: String?){
+    fun getProductsCategory(category: String?,limit: Int, skip: Int){
         viewModelScope.launch {
             _specificProducts.value = Resource.Loading()
-            _specificProducts.value = repo.getProductsCategory(category)
+            _specificProducts.value = repo.getProductsCategory(category,limit, skip)
         }
     }
 }
