@@ -20,3 +20,10 @@ Smooth image loading with Glide
 Shimmer loading effect for better user experience
 
 Pagination / Infinite scrolling for product lists
+
+<h2>Screenshots</h2>
+
+<p align="center">
+  <img src="screenshots/homepage.png" width="250"/>
+  <img src="screenshots/searchpage.png" width="250"/>
+</p>
