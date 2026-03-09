@@ -35,7 +35,7 @@ class MoreProductFragment : Fragment(), ProductClickListener {
     private var category: String? = null
 
     private var isLoading = false
-    private var limit = 2
+    private var limit = 4
     private var skip = 0
     private var total = 0
     // 1. Create a Repository instance
@@ -79,6 +79,9 @@ class MoreProductFragment : Fragment(), ProductClickListener {
         viewModel.specificProducts.observe(viewLifecycleOwner) { products ->
             handleCollectionTemplatesResource(products)
         }
+        viewModel.products.observe(viewLifecycleOwner) { products ->
+            handleCollectionTemplatesResource(products)
+        }
 
         recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
 
@@ -106,10 +109,20 @@ class MoreProductFragment : Fragment(), ProductClickListener {
     }
 
     fun loadProducts(category: String?){
-        if (isLoading) return
+        if (category == "All") {
+            if (isLoading) return
 
-        isLoading = true
-        viewModel.getProductsCategory(category,limit, skip)
+            isLoading = true
+            viewModel.getAllProductsTab(limit, skip)
+
+        } else {
+            if (isLoading) return
+
+            isLoading = true
+            viewModel.getProductsCategory(category,limit, skip)
+        }
+
+
 
     }
 

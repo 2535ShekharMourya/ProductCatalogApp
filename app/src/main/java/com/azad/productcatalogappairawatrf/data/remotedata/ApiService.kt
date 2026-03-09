@@ -17,6 +17,10 @@ interface ApiService {
     @GET("products/{id}")
     suspend fun getProductById( @Path("id") id: Int): Response<Product>
 
+    @GET("products")
+    suspend fun getAllProductsTab(@Query("limit") limit: Int,
+                                  @Query("skip") skip: Int): Response<AllProductsResponse>
+
 
 
 }

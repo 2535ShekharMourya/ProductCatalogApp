@@ -8,6 +8,7 @@ interface Repository {
     suspend fun getAllProducts(): Resource<AllProductsResponse>
     suspend fun getProductsCategory(category: String?,limit: Int, skip: Int): Resource<AllProductsResponse>
     suspend fun getProductById(id: Int): Resource<Product>
+    suspend fun getAllProductsTab(limit: Int, skip: Int):Resource<AllProductsResponse>
 }
 
 

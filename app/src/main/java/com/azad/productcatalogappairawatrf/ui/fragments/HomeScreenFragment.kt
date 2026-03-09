@@ -77,10 +77,14 @@ class HomeScreenFragment : Fragment() {
     private fun handleCollectionsResource(resource: Resource<AllProductsResponse>) {
         when (resource) {
             is Resource.Loading -> {
+                binding.shimmerLayout.startShimmer()
+                binding.shimmerLayout.visibility= View.VISIBLE
 //                binding.lottieAnimationView.visibility = View.VISIBLE
 //                binding.lottieAnimationView.playAnimation()
             }
             is Resource.Success -> {
+                binding.shimmerLayout.stopShimmer()
+                binding.shimmerLayout.visibility= View.GONE
 //                binding.lottieAnimationView.visibility = View.GONE
 //                binding.lottieAnimationView.pauseAnimation()
                 resource.data?.let { collections ->
@@ -88,6 +92,8 @@ class HomeScreenFragment : Fragment() {
 
                     // Extract unique categories
                     val categories = products.map { it.category }.distinct().toMutableList()
+                    // Add "All" tab at first position
+                    categories.add(0, "All")
                     Log.d("azad", "handleCollectionsResource: HomeScreenFragment: $categories")
 
 //                    // Add "All" tab at first position

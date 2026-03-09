@@ -36,6 +36,12 @@ fun getProductById(id: Int){
             _products.value = repo.getAllProducts()
         }
     }
+    fun getAllProductsTab(limit: Int, skip: Int) {
+        viewModelScope.launch {
+            _products.value = Resource.Loading()
+            _products.value = repo.getAllProductsTab(limit, skip)
+        }
+    }
     fun getProductsCategory(category: String?,limit: Int, skip: Int){
         viewModelScope.launch {
             _specificProducts.value = Resource.Loading()

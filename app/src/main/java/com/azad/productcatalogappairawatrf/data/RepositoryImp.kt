@@ -85,4 +85,30 @@ class RepositoryImp( private val apiService: ApiService?): Repository {
         }
 
     }
+
+    override suspend fun getAllProductsTab(limit: Int, skip: Int):Resource<AllProductsResponse> {
+        return try {
+            val response = apiService?.getAllProductsTab(limit,skip)
+            if (response?.isSuccessful == true) {
+                response.body()?.let { products ->
+
+                    Log.d("Response", "getProducts: ${products}")
+                    Resource.Success(products)
+                } ?: Resource.Error("Empty response body")
+            } else {
+                Log.d("Response", "getProducts: ${response?.code()}")
+                Resource.Error("HTTP ${response?.code()}: ${response?.message()}")
+            }
+        } catch (e: IOException) {
+            Log.d("Response", "Network error: Check your internet connection")
+            Resource.Error("Network error: Check your internet connection")
+        } catch (e: HttpException) {
+            Log.d("Response", "Server error: ${e.message()}")
+            Resource.Error("Server error: ${e.message()}")
+        } catch (e: Exception) {
+            Log.d("Response", "Unexpected error: ${e.message}")
+            Resource.Error("Unexpected error: ${e.message}")
+        }
+
+    }
 }
